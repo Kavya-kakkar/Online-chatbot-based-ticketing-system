@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museum Exhibition Days</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url("{% static 'exhibit3.png' %}") no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+      color: #222;
+      letter-spacing: 1px;
+    }
+
+    .exhibit-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    .card .date {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .card p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .card {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Museum Exhibition Days</h1>
+    <div class="exhibit-list">
+      {% for exhibit in exhibits %}
+        <div class="card">
+          <h2>{{ exhibit.title }}</h2>
+          <div class="date">{{ exhibit.date }}</div>
+          <p>{{ exhibit.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
