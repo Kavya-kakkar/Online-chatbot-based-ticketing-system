@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Exhibit, Event, Ticket, Feedback
+from .models import Exhibit, Event, Ticket
 
 
 def index(request):
@@ -20,4 +20,5 @@ def login(request):
     return render(request,"login.html")
 
 def time(request):
+    time = Ticket.objects.all()
     return render(request,"time.html")

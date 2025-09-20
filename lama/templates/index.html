@@ -52,9 +52,25 @@
 
                 <div class="search">
                     <i class="fa fa-search"></i>
-                    <input type="text" placeholder="your jouney begins with a search..." style="color: antiquewhite;">
-                    <button>search</button>
-                    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+                    <input type="text" id="searchInput" placeholder="your jouney begins with a search..." style="color: antiquewhite;">
+                    <button onclick="searchNow()">search</button>
+                    <script>
+                        function searchNow() {
+                            let query = document.getElementById("searchInput").value.trim().toLowerCase();
+
+                            let pages = {
+                                "about": "About/",
+                                "timing": "time/",
+                                "exhibition": "exhibit/",
+                                "events": "event/"
+                            }
+                            if(pages[query]) {
+                                window.location.href = pages[query];
+                            } else {
+                                alert("Pages not found! Try: home, about contact , services");
+                            }
+                        }
+                    </script>
 
                 </div>
             </div>

@@ -34,17 +34,6 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"Ticket for {self.user.username} - {self.event or self.exhibit}"
-
-
-# 4. Visitor Feedback
-class Feedback(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    message = models.TextField()
-    rating = models.IntegerField(default=5)  # 1 to 5 stars
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Feedback from {self.user.username}"
     
 
 # 5. Musem Staff

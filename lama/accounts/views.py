@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect
+from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from django.contrib.auth.models import User,auth
+
 
 # Create your views here.
 
@@ -20,7 +21,6 @@ def login(request):
     else:
         return render(request,'login.html')
     
-
 
 def register(request):
 
@@ -48,12 +48,12 @@ def register(request):
         else:
             messages.info(request , 'password not matching..')
             return redirect('register')
-        return redirect('/')
     
     else:
         return render(request,"register.html")
     
 def logout(request):
+    messages.info(request, 'Logged out successfully')
     auth.logout(request)
     return redirect('/')
 
