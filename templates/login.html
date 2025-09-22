@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      display: grid;
+      place-items: center;
+      height: 100vh;
+    }
+
+    .login-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 35px;
+      width: 350px;
+      display: grid;
+      gap: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .login-card h2 {
+      text-align: center;
+      margin: 0 0 15px 0;
+      font-size: 1.8rem;
+      color: #333;
+    }
+
+    .input-field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .input-field label {
+      font-weight: 600;
+      color: #444;
+      font-size: 0.9rem;
+    }
+
+    .input-field input {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input-field input:focus {
+      border-color: #5563DE;
+      box-shadow: 0 0 0 3px rgba(85, 99, 222, 0.2);
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .login-btn {
+      background: #5563DE;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #4052c5;
+    }
+
+    .messages {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .messages h3 {
+      color: red;
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+
+    .extra-links {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 15px;
+    }
+
+    .extra-links a {
+      color: #5563DE;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h2>Welcome Back 👋</h2>
+    <form action="login" method="post">
+      {% csrf_token %}
+      <div class="input-field">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Enter username" required>
+      </div>
+      <div class="input-field">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Enter password" required>
+      </div>
+
+      <!-- Centered Button -->
+      <div class="btn-container">
+        <button type="submit" class="login-btn">Login</button>
+      </div>
+    </form>
+
+    <div class="messages">
+      {% for message in messages %}
+        <h3>{{ message }}</h3>
+      {% endfor %}
+    </div>
+
+    <div class="extra-links">
+      <p>Don’t have an account? <a href="/register">Register</a></p>
+      <p><a href="#">Forgot Password?</a></p>
+    </div>
+  </div>
+</body>
+</html>

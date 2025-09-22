@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museum Timing</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("{% static 'time5.png' %}");
+      background-size: cover;
+      background-position: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2),
+                  inset 0 2px 5px rgba(255,255,255,0.5);
+      backdrop-filter: blur(8px);
+      transform: perspective(1000px) rotateX(2deg);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #222;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    th {
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    tbody tr {
+      background: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .closed {
+      color: #d9534f;
+      font-weight: bold;
+      text-shadow: 0px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px) rotateX(5deg); }
+      to { opacity: 1; transform: translateY(0) rotateX(2deg); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      th, td {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⏰ Museum Timing</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Opening Time</th>
+          <th>Closing Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monday</td>
+          <td>9:00 AM</td>
+          <td>5:00 PM</td>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td>9:00 AM</td>
+          <td>5:00 PM</td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td>9:00 AM</td>
+          <td>5:00 PM</td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td>9:00 AM</td>
+          <td>5:00 PM</td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td>9:00 AM</td>
+          <td>5:00 PM</td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td>10:00 AM</td>
+          <td>6:00 PM</td>
+        </tr>
+        <tr>
+          <td>Sunday</td>
+          <td class="closed">Closed</td>
+          <td class="closed">Closed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

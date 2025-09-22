@@ -1,0 +1,73 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("{% static 'event2.png' %}");
+            background-size: cover;
+        }
+        .event-container {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 600px;
+            width: 100%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .event-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            font-size: 20px;
+        }
+        .event-details {
+            padding: 15px;
+        }
+        .event-details p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        .event-details .label {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        {% for event in events %}
+            <div class="event-container">
+                <div class="event-header">
+                    {{ event.name }}
+                </div>
+                <div class="event-details">
+                    {% if event.image %} 
+                      <img src = "{{ event.image.url }}" alt = "{{ event.name }}" style = "max-width:100%; border-radius:10px; margin-bottom:15px;">
+                      {% endif %}
+                      
+                    <p><span class="label">Venue:</span> {{ event.location }}</p>
+                    <p><span class="label">Date:</span> {{ event.date }}</p>
+                    <p><span class="label">Time:</span> {{ event.time }}</p>
+                    <p><span class="label">Description:</span> {{ event.description }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>No events found.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
