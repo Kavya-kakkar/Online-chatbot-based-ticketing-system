@@ -8,6 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Museum</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'our_terms.html' %}">
+    <link rel="stylesheet" href="{% static 'carrer.html' %}">
+    <link rel="stylesheet" href="{% static 'mission.html' %}">
+    <link rel="stylesheet" href="{% static 'partnership.html' %}">
+    <link rel="stylesheet" href="{% static 'FAQ.html' %}">
+    <link rel="stylesheet" href="{% static 'Booking.html' %}">
+    <link rel="stylesheet" href="{% static 'Cacellation.html' %}">
+    <link rel="stylesheet" href="{% static 'site_map.html' %}">
+    <link rel="stylesheet" href="{% static 'Newsletter.html' %}">
+    <link rel="stylesheet" href="{% static 'Blog.html' %}">
+    <link rel="stylesheet" href="{% static 'Gallery.html' %}">
+    <link rel="stylesheet" href="{% static 'Offers.html' %}">
+    <link rel="stylesheet" href="{% static 'Privacy.html' %}">
     <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
 
 </head>
@@ -349,25 +362,25 @@
                 </div>
                 <div class="about-us">
                     <h4>About us</h4>
-                    <li><a href="About/">about us</a></li>
-                    <li><a href="#">our term</a></li>
-                    <li><a href="#">careers</a></li>
-                    <li><a href="#">mission and values</a></li>
-                    <li><a href="#">partnerships</a></li>
+                    <li><a href="{% url 'About' %}">about us</a></li>
+                    <li><a href="{% url 'our_terms' %}">our terms</a></li>
+                    <li><a href="{% url 'carrer' %}">careers</a></li>
+                    <li><a href="{% url 'mission' %}">mission and values</a></li>
+                    <li><a href="{% url 'partnership' %}">partnerships</a></li>
                 </div>
                 <div class="about-us">
                     <h4>help</h4>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">booking guide</a></li>
-                    <li><a href="#">cancellation policy</a></li>
-                    <li><a href="#">site map</a></li>
+                    <li><a href="{% url 'FAQ' %}">FAQ</a></li>
+                    <li><a href="{% url 'booking' %}">booking guide</a></li>
+                    <li><a href="{% url 'Cacellation' %}">cancellation policy</a></li>
+                    <li><a href="{% url 'site_map' %}">site map</a></li>
                 </div>
                 <div class="about-us">
                     <h4>Resources</h4>
-                    <li><a href="#">newsletter</a></li>
-                    <li><a href="#">blog</a></li>
-                    <li><a href="#">gallery</li>
-                    <li><a href="#">offers</a></li>
+                    <li><a href="{% url 'newletter' %}">newsletter</a></li>
+                    <li><a href="{% url 'Blog' %}">blog</a></li>
+                    <li><a href="{% url 'Gallery' %}">gallery</li>
+                    <li><a href="{% url 'Offers' %}">offers</a></li>
                 </div>
             </div>
 
@@ -376,8 +389,8 @@
                     &copy;2024 - Ciphers, inc, all rights reserved
                 </div>
                 <div>
-                    <a href="#">term & conditions</a>
-                    <a href="#">privacy policy</a>
+                    <a href="{% url 'our_terms' %}">term & conditions</a>
+                    <a href="{% url 'Privacy' %}">privacy policy</a>
                 </div>
             </div>
         </section>

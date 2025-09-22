@@ -14,5 +14,18 @@ urlpatterns = [
     path('accounts/',include('accounts.urls')),
     path('register/',register,name='register'),
     path('logout/',logout,name='logout'),
+    path('our_terms/',views.our_terms,name='our_terms'),
+    path('carrer/',views.carrer,name='carrer'),
+    path('mission/',views.mission,name='mission'),
+    path('partnership/',views.partnership,name='partnership'),
+    path('FAQ/',views.FAQ,name='FAQ'),
+    path('booking/',views.booking,name='booking'),
+    path('Cacellation/',views.Cacellation,name='Cacellation'),
+    path('site_map/',views.site_map,name='site_map'),
+    path('newletter/',views.newletter,name='newletter'),
+    path('Blog/',views.Blog,name='Blog'),
+    path('Gallery/',views.Gallery,name='Gallery'),
+    path('Offers/',views.Offers,name='Offers'),
+    path("Privacy/", views.privacy, name="Privacy"),
 
 ]
