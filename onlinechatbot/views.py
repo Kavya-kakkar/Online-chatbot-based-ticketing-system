@@ -22,3 +22,44 @@ def login(request):
 def time(request):
     time = Ticket.objects.all()
     return render(request,"time.html")
+
+def our_terms(request):
+    return render(request,"our_terms.html")
+
+def carrer(request):
+    return render(request,"carrer.html")
+
+def mission(request):
+    return render(request,"mission.html")
+
+def partnerships(request):
+    return render(request,"partnerships.html")
+
+def FAQ(request):
+    return render(request,"FAQ.html")
+
+def booking_guide(request):
+    return render(request,"booking_guide.html")
+
+def Cacellation(request):
+    return render(request,"Cacellation.html")
+
+def site_map(request):
+    return render(request,"site_map.html")
+
+def Newsletter(request):
+    return render(request,"Newsletter.html")
+
+def Blog(request):
+    return render(request,"Blog.html")
+
+def Gallery(request):
+    return render(request,"Gallery.html")
+
+def Offers(request):
+    return render(request,"Offers.html")
+
+def Privacy(request):
+    return render(request,"Privacy.html")
+
+

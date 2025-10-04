@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancellation Policy - Ciphers Inc</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        .policy-section {
+            margin-bottom: 25px;
+        }
+        .highlight {
+            background: #fff3cd;
+            border-left: 5px solid #f0ad4e;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #c0392b;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #a93226;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cancellation Policy</h1>
+        <p>We understand that plans can change. This page explains how cancellations work for bookings made with <strong>Ciphers Inc</strong>.</p>
+
+        <div class="policy-section">
+            <h2>General Rules</h2>
+            <ul>
+                <li>Cancellations made within <strong>24 hours</strong> of booking are fully refundable.</li>
+                <li>Cancellations made up to <strong>7 days</strong> before the event/service receive a 50% refund.</li>
+                <li>No refunds will be issued for cancellations made less than <strong>48 hours</strong> before the event/service.</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>How to Cancel</h2>
+            <p>To cancel your booking, please visit your <a href="{% url 'login' %}">account dashboard</a> and select the cancellation option, or contact our support team.</p>
+        </div>
+
+        <div class="policy-section highlight">
+            <h2>Important Notes</h2>
+            <ul>
+                <li>Refunds may take 5-7 business days to process.</li>
+                <li>In case of technical issues or event cancellation from our side, you will receive a full refund.</li>
+                <li>For more details, please check our <a href="{% url 'our_terms' %}">Terms & Conditions</a>.</li>
+            </ul>
+        </div>
+
+        <a href="{% url 'booking' %}" class="btn">Back to Booking Guide</a>
+    </div>
+</body>
+</html>

@@ -1,1 +1,103 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Guide - Ciphers Inc</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .steps {
+            margin: 20px 0;
+        }
+        .step {
+            padding: 20px;
+            border-left: 5px solid #3498db;
+            margin-bottom: 20px;
+            background: #ecf6fd;
+            border-radius: 8px;
+        }
+        .step h3 {
+            margin-top: 0;
+        }
+        .faq {
+            margin-top: 40px;
+        }
+        .faq h2 {
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #3498db;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #217dbb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booking Guide</h1>
+        <p>Follow this simple guide to book your tickets, events, or services with <strong>Ciphers Inc</strong>. We’ve designed the process to be quick and user-friendly.</p>
+
+        <div class="steps">
+            <div class="step">
+                <h3>Step 1: Browse Events & Services</h3>
+                <p>Visit our <a href="{% url 'Gallery' %}">Gallery</a> or <a href="{% url 'event' %}">Events</a> page to explore what’s available.</p>
+            </div>
+            <div class="step">
+                <h3>Step 2: Choose Your Option</h3>
+                <p>Select your preferred date, time, and service/event package. Check details and pricing carefully.</p>
+            </div>
+            <div class="step">
+                <h3>Step 3: Create/Login to Account</h3>
+                <p>You’ll need to <a href="{% url 'register' %}">register</a> or <a href="{% url 'login' %}">login</a> to continue with booking.</p>
+            </div>
+            <div class="step">
+                <h3>Step 4: Make Payment</h3>
+                <p>Choose your payment method and complete the transaction securely. You’ll get an instant confirmation email.</p>
+            </div>
+            <div class="step">
+                <h3>Step 5: Confirmation</h3>
+                <p>Your booking details will be sent to your email, and you can also view them in your <a href="{% url 'account' %}">account dashboard</a>.</p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <h2>Booking FAQ</h2>
+            <h4>Can I cancel my booking?</h4>
+            <p>Yes, please review our <a href="{% url 'Cacellation' %}">cancellation policy</a> for details.</p>
+
+            <h4>Do I need to print my ticket?</h4>
+            <p>No, you can simply show your digital confirmation at the venue.</p>
+        </div>
+
+        <a href="{% url 'booking' %}" class="btn">Start Booking Now</a>
+    </div>
+</body>
+</html>
