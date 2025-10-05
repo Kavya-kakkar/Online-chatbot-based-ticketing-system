@@ -1,1 +1,172 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Ciphers</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f7ff, #e8ecff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            color: #002b80;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 20px 40px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 18px 0;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0047b3;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #001f66;
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #0047b3;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            content: '−';
+            transform: rotate(180deg);
+            color: #e63946;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #002b80;
+            color: #fff;
+            margin-top: 60px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        footer a {
+            color: #aaccff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .faq-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Frequently Asked Questions</h1>
+        <p>Have questions? We’ve got answers to help you get started!</p>
+    </header>
+
+    <div class="faq-container">
+
+        <div class="faq-item">
+            <div class="faq-question">1️⃣ How do I book tickets using your chatbot?</div>
+            <div class="faq-answer">
+                Simply start chatting with our AI assistant. It will ask for your travel details, suggest options, and help you confirm your booking instantly.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">2️⃣ Can I modify or cancel my booking?</div>
+            <div class="faq-answer">
+                Yes, go to the <a href="{% url 'Cacellation' %}">Cancellation page</a> or use your booking ID in the chatbot to make changes or request a refund.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">3️⃣ Is my payment information secure?</div>
+            <div class="faq-answer">
+                Absolutely. We use 128-bit SSL encryption and trusted payment gateways to ensure your data remains safe and private.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">4️⃣ What if I face technical issues while booking?</div>
+            <div class="faq-answer">
+                Try refreshing the page or restarting the chatbot. If the issue persists, contact our support team at <strong>support@ciphers.in</strong>.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">5️⃣ Can I subscribe to your newsletter?</div>
+            <div class="faq-answer">
+                Yes! You can join our <a href="{% url 'Newsletter' %}">Newsletter</a> to get the latest offers and travel tips directly to your inbox.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">6️⃣ Is there a mobile app available?</div>
+            <div class="faq-answer">
+                We're currently developing a mobile version of our chatbot-based ticketing system. Stay tuned for the launch announcement!
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 Ciphers Inc. | <a href="{% url 'Privacy' %}">Privacy Policy</a> | <a href="{% url 'our_terms' %}">Terms & Conditions</a></p>
+    </footer>
+
+    <script>
+        const questions = document.querySelectorAll('.faq-question');
+        questions.forEach(q => {
+            q.addEventListener('click', () => {
+                q.classList.toggle('active');
+                const answer = q.nextElementSibling;
+                answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+            });
+        });
+    </script>
+
+</body>
+</html>
