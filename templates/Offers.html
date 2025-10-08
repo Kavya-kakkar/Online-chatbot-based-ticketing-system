@@ -1,1 +1,191 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exclusive Offers | Ciphers Museum</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .offer-header {
+      background: linear-gradient(135deg, #1b1b2f, #162447);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .offer-header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .offer-card {
+      transition: all 0.4s ease;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .offer-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .offer-card img {
+      height: 220px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .offer-card-body {
+      padding: 25px;
+      text-align: center;
+      background: white;
+    }
+
+    .offer-card-body h5 {
+      font-weight: 700;
+      color: #162447;
+    }
+
+    .offer-card-body p {
+      color: #555;
+    }
+
+    .discount {
+      background: #ff4c60;
+      color: white;
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 30px;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 60px 20px;
+      background: #162447;
+      color: white;
+      margin-top: 80px;
+      border-radius: 10px;
+    }
+
+    .cta-section button {
+      background: #ff4c60;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .cta-section button:hover {
+      background: #ff2e4d;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar  Section -->
+<section class="home" id="home">
+    <div class="home-box">
+        <nav>
+            <div class="logo bars">
+                <div class="bar">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <h3>Ciphers</h3>
+            </div>
+            <div class="menu">
+                <div class="close">
+                    <i class="fa fa-close"></i>
+                </div>
+                <ul>
+                  <li><a href= "{% url 'index' %}">Home</a></li>
+                  <li><a href="{% url 'About' %}">about</a></li>
+                  <li><a href="{% url 'time' %}">timing</a></li>
+                  <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+                  <li><a href="{% url 'event' %}">Events</a></li>
+                </ul>
+              </div>
+              <div class="login">
+                {% if user.is_authenticated %}
+                <li>Hello, {{user.first_name}}</li>
+                <a href="accounts/logout">Logout</a>
+                {% else %}
+                <a href="accounts/register" style="margin-right: 15px;">Register</a>
+                <a href="accounts/login">login</a>
+                {% endif %}
+              </div>
+            </nav>
+
+  <!-- Header Section -->
+  <section class="offer-header">
+    <h1>🎉 Exciting Offers & Discounts 🎟️</h1>
+    <p>Grab the best deals on museum tickets and upcoming events!</p>
+  </section>
+
+  <!-- Offer Cards Section -->
+  <div class="container my-5">
+    <div class="row g-4">
+      
+      <div class="col-md-4">
+        <div class="card offer-card">
+          <img src="{% static 'images/family_offer.jpg' %}" alt="Family Offer">
+          <div class="offer-card-body">
+            <h5>Family Day Pass</h5>
+            <p>Enjoy a full day of exploration with your loved ones at a special price!</p>
+            <div class="discount">Save 25%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card offer-card">
+          <img src="{% static 'images/student_offer.jpg' %}" alt="Student Offer">
+          <div class="offer-card-body">
+            <h5>Student Special</h5>
+            <p>Show your student ID and get discounted entry tickets to all exhibits!</p>
+            <div class="discount">50% Off</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card offer-card">
+          <img src="{% static 'images/event_offer.jpg' %}" alt="Event Offer">
+          <div class="offer-card-body">
+            <h5>Weekend Event Combo</h5>
+            <p>Book your weekend museum entry with our upcoming event and save big!</p>
+            <div class="discount">Flat ₹200 Off</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Don’t Miss Out on Our Limited-Time Offers!</h2>
+    <p>Book your tickets now and make your museum visit unforgettable.</p>
+    <button id = "BookNowBtn">Book Tickets</button>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("BookNowBtn").addEventListener("click", function(){
+        window.location.href = "{% url 'event' %}";
+    });
+  </script>
+</body>
+</html>
