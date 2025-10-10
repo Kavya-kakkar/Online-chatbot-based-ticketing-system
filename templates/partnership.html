@@ -1,1 +1,171 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partnerships | Ciphers Ticketing</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <script src="https://kit.fontawesome.com/a2e0e6ad47.js" crossorigin="anonymous"></script>
+
+  <style>
+    .hero {
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .partners-section {
+      padding: 60px 0;
+    }
+
+    .partner-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .partner-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .partner-logo {
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .cta-section {
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .cta-section h2 {
+      font-weight: 700;
+      color: #222;
+    }
+
+    .cta-section p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ Navbar -->
+<section class="home" id="home">
+    <div class="home-box">
+      <nav>
+        <div class="logo bars">
+          <div class="bar">
+            <i class="fa fa-bars"></i>
+          </div>
+          <h3>Ciphers</h3>
+        </div>
+        <div class="menu">
+          <div class="close">
+            <i class="fa fa-close"></i>
+          </div>
+          <ul>
+            <li><a href= "{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'About' %}">about</a></li>
+            <li><a href="{% url 'time' %}">timing</a></li>
+            <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+            <li><a href="{% url 'event' %}">Events</a></li>
+          </ul>
+        </div>
+        <div class="login">
+          {% if user.is_authenticated %}
+          <li>Hello, {{user.first_name}}</li>
+          <a href="accounts/logout">Logout</a>
+          {% else %}
+          <a href="accounts/register" style="margin-right: 15px;">Register</a>
+          <a href="accounts/login">login</a>
+          {% endif %}
+        </div>
+      </nav>
+
+
+  <!-- 🌟 Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Partner with Ciphers Ticketing</h1>
+      <p>Collaborate with us to revolutionize ticketing through AI-powered chat experiences.</p>
+    </div>
+  </section>
+
+  <!-- 🤝 Our Partners -->
+  <section class="partners-section">
+    <div class="container text-center">
+      <h2 class="mb-5 fw-bold">Our Trusted Partners</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card partner-card p-4">
+            <img src="{% static 'images/partner1.png' %}" alt="Museum Alliance" class="partner-logo mx-auto mb-3">
+            <h5>Museum Alliance</h5>
+            <p>Partnering to offer seamless online bookings and guided chatbot assistance for visitors.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card partner-card p-4">
+            <img src="{% static 'images/partner2.png' %}" alt="Event Masters" class="partner-logo mx-auto mb-3">
+            <h5>Event Masters</h5>
+            <p>Collaborating to bring concerts, exhibitions, and workshops closer to audiences online.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card partner-card p-4">
+            <img src="{% static 'images/partner3.png' %}" alt="TravelCo" class="partner-logo mx-auto mb-3">
+            <h5>TravelCo</h5>
+            <p>Offering AI-assisted ticket packages that blend travel, culture, and experiences.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📩 Partnership Inquiry Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Become a Partner</h2>
+      <p>We welcome collaborations with museums, event organizers, travel companies, and digital platforms.</p>
+      <form class="mx-auto" style="max-width: 600px;">
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Your Organization Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="Business Email" required>
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" rows="4" placeholder="Tell us about your organization..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark px-4 py-2">Submit Inquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-white py-4" style="background-color:#141e30;">
+    <p class="mb-0">&copy; 2025 Ciphers Ticketing | All Rights Reserved</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
