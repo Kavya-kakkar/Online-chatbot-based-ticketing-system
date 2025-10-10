@@ -33,7 +33,7 @@ def mission(request):
     return render(request,"mission.html")
 
 def partnerships(request):
-    return render(request,"partnerships.html")
+    return render(request,"partnership.html")
 
 def FAQ(request):
     return render(request,"FAQ.html")
