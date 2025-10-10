@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Careers at Ciphers Inc</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
   <style>
     body {
       font-family: "Segoe UI", Arial, sans-serif;
@@ -87,6 +87,39 @@
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
+<section class="home" id="home">
+    <div class="home-box">
+      <nav>
+        <div class="logo bars">
+          <div class="bar">
+            <i class="fa fa-bars"></i>
+          </div>
+          <h3>Ciphers</h3>
+        </div>
+        <div class="menu">
+          <div class="close">
+            <i class="fa fa-close"></i>
+          </div>
+          <ul>
+            <li><a href= "{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'About' %}">about</a></li>
+            <li><a href="{% url 'time' %}">timing</a></li>
+            <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+            <li><a href="{% url 'event' %}">Events</a></li>
+          </ul>
+        </div>
+        <div class="login">
+          {% if user.is_authenticated %}
+          <li>Hello, {{user.first_name}}</li>
+          <a href="accounts/logout">Logout</a>
+          {% else %}
+          <a href="accounts/register" style="margin-right: 15px;">Register</a>
+          <a href="accounts/login">login</a>
+          {% endif %}
+        </div>
+      </nav>
   <section class="hero">
     <h1>Join Our Team</h1>
     <p>At Ciphers Inc, we are building the future with innovation, collaboration, and passion.</p>
