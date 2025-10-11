@@ -116,7 +116,7 @@
 <body>
   <div class="register-card">
     <h2>Create Account ✨</h2>
-    <form action="register" method="post">
+    <form action="{% url 'register' %}" method="post">
       {% csrf_token %}
       <div class="input-field">
         <label for="first_name">First Name</label>
