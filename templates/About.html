@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
   <title>About Us - Museum</title>
   <style>
     body {
@@ -44,6 +45,39 @@
   </style>
 </head>
 <body>
+
+  <section class="home" id="home">
+    <div class="home-box">
+      <nav>
+        <div class="logo bars">
+          <div class="bar">
+            <i class="fa fa-bars"></i>
+          </div>
+          <h3>Ciphers</h3>
+        </div>
+        <div class="menu">
+          <div class="close">
+            <i class="fa fa-close"></i>
+          </div>
+          <ul>
+            <li><a href= "{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'About' %}">about</a></li>
+            <li><a href="{% url 'time' %}">timing</a></li>
+            <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+            <li><a href="{% url 'event' %}">Events</a></li>
+          </ul>
+        </div>
+        <div class="login">
+          {% if user.is_authenticated %}
+          <li>Hello, {{user.first_name}}</li>
+          <a href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a href="{% url 'register' %}" style="margin-right: 15px;">Register</a>
+          <a href="{% url 'login' %}">login</a>
+          {% endif %}
+        </div>
+      </nav>
+
   <div class="container">
     <h1>About Our Museum</h1>
     <p>
