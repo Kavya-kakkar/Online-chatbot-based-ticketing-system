@@ -50,10 +50,10 @@
                 <div class="login">
                     {% if user.is_authenticated %}
                     <li>Hello, {{user.first_name}}</li>
-                    <a href="accounts/logout">Logout</a>
+                    <a href="{% url 'logout' %}">Logout</a>
                     {% else %}
-                    <a href="accounts/register" style="margin-right: 15px;">Register</a>
-                    <a href="accounts/login">login</a>
+                    <a href="{% url 'register' %}" style="margin-right: 15px;">Register</a>
+                    <a href="{% url 'login' %}">login</a>
                     {% endif %}
                 </div>
             </nav>
