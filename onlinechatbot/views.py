@@ -3,7 +3,7 @@ from .models import Exhibit, Event, Ticket
 
 
 def index(request):
-    return render(request,"index.html", )
+    return render(request,"index.html")
 
 def About(request):
     return render(request,"About.html")
