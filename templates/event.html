@@ -1,73 +1,157 @@
-{% load static %} 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Museum Events</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
     <style>
+
+        /* Remove big hero from homepage layout */
+        #home {
+            height: auto !important;
+            background: none !important;
+            padding-bottom: 20px;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+            background: url("{% static 'event2.png' %}") no-repeat center/cover;
+        }
+
+        .main-heading {
+            font-size: 3rem;
+            text-align: center;
+            color: #1c4526;
+            margin-top: 20px;
+        }
+
+        .event-section {
+            padding: 40px 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-image: url("{% static 'event2.png' %}");
-            background-size: cover;
         }
-        .event-container {
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            max-width: 600px;
+
+        .event-container-wrapper {
+            width: 85%;
+            margin: auto;
+        }
+
+        .floating-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            width: 90%;
+            margin: 40px auto;
+        }
+
+        .event-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .event-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .event-card h2 {
+            font-size: 1.6rem;
+            color: #1c4526;
+            margin-bottom: 10px;
+        }
+
+        .event-card img {
             width: 100%;
-            margin: 20px auto;
-            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 15px;
         }
-        .event-header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            font-size: 20px;
+
+        .event-card p {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 8px;
         }
-        .event-details {
-            padding: 15px;
-        }
-        .event-details p {
-            margin: 8px 0;
-            font-size: 16px;
-        }
-        .event-details .label {
+
+        .label {
             font-weight: bold;
-            color: #333;
+            color: #222;
         }
+
     </style>
 </head>
+
 <body>
-    <div>
-        {% for event in events %}
-            <div class="event-container">
-                <div class="event-header">
-                    {{ event.name }}
-                </div>
-                <div class="event-details">
-                    {% if event.image %} 
-                      <img src = "{{ event.image.url }}" alt = "{{ event.name }}" style = "max-width:100%; border-radius:10px; margin-bottom:15px;">
-                      {% endif %}
-                      
+
+<section class="home" id="home">
+  <div class="home-box">
+    <nav>
+      <div class="logo bars"><h3>Ciphers</h3></div>
+
+      <div class="menu">
+        <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'About' %}">About</a></li>
+          <li><a href="{% url 'time' %}">Timing</a></li>
+          <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+          <li><a href="{% url 'event' %}">Events</a></li>
+        </ul>
+      </div>
+
+      <div class="login">
+        <ul>
+        {% if user.is_authenticated %}
+            <li>Hello, {{ user.first_name }}</li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="event-section">
+    <div class="event-container-wrapper">
+
+        <h1 class="main-heading">Museum Events</h1>
+
+        <div class="floating-card">
+            <div class="event-list">
+
+                {% for event in events %}
+                <div class="event-card">
+
+                    <h2>{{ event.name }}</h2>
+
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="{{ event.name }}">
+                    {% endif %}
+
                     <p><span class="label">Venue:</span> {{ event.location }}</p>
                     <p><span class="label">Date:</span> {{ event.date }}</p>
                     <p><span class="label">Time:</span> {{ event.time }}</p>
                     <p><span class="label">Description:</span> {{ event.description }}</p>
+
                 </div>
+                {% empty %}
+                    <p>No events found.</p>
+                {% endfor %}
+
             </div>
-        {% empty %}
-            <p>No events found.</p>
-        {% endfor %}
+        </div>
+
     </div>
+</section>
+
 </body>
 </html>

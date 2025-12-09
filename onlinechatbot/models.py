@@ -48,4 +48,11 @@ class Staff(models.Model):
     def __str__(self):
         return self.name
     
+class MuseumTiming(models.Model):
+    day = models.CharField(max_length = 20)
+    open_time = models.CharField(max_length = 20,blank = True , null = True)
+    close_time = models.CharField(max_length = 20, blank = True , null = True)
+    is_closed = models.BooleanField(default = False)
 
+    def __str__(self):
+        return self.day

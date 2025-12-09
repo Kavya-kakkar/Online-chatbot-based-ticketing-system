@@ -5,155 +5,169 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Museum Timing</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
+  <!-- TIMING PAGE FIX + TABLE STYLES -->
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+
+    /* Fix: remove fullscreen hero height from timing page */
+    #home {
+        height: auto !important;
+        background: none !important;
+        padding-bottom: 20px;
     }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e0eafc, #cfdef3);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-image: url("{% static 'time5.png' %}");
-      background-size: cover;
-      background-position: center;
-      padding: 40px 20px;
+    /* Heading */
+    .main-heading {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: #1c4526;
     }
 
-    .container {
-      width: 100%;
-      max-width: 900px;
-      background: rgba(255, 255, 255, 0.95);
+    /* Timing page container */
+    .timing-section {
+        padding: 40px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .timing-container {
+        width: 85%;
+        margin: auto;
+        text-align: center;
+    }
+
+    /* Table box */
+    .timing-table-box {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .floating-card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2),
-                  inset 0 2px 5px rgba(255,255,255,0.5);
-      backdrop-filter: blur(8px);
-      transform: perspective(1000px) rotateX(2deg);
-      animation: fadeIn 1s ease-in-out;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      width: 90%;
+      margin: 40px auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .floating-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
     }
 
-    h1 {
-      text-align: center;
-      font-size: 2.2rem;
-      color: #222;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    /* Table styling */
+    .timing-table {
+        width: 80%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    .timing-table th {
+        background: #1c4526;  /* dark green from your theme */
+        color: #fff;
+        padding: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    th, td {
-      padding: 15px;
-      text-align: center;
-      font-size: 1rem;
+    .timing-table td {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        font-size: 1rem;
     }
 
-    th {
-      background: linear-gradient(135deg, #6dd5ed, #2193b0);
-      color: white;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-
-    tbody tr {
-      background: #fff;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    tbody tr:nth-child(even) {
-      background: #f9f9f9;
-    }
-
-    tbody tr:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    .timing-table tr:last-child td {
+        border-bottom: none;
     }
 
     .closed {
-      color: #d9534f;
-      font-weight: bold;
-      text-shadow: 0px 1px 2px rgba(0,0,0,0.1);
+        color: red;
+        font-weight: bold;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px) rotateX(5deg); }
-      to { opacity: 1; transform: translateY(0) rotateX(2deg); }
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      th, td {
-        padding: 10px;
-        font-size: 0.9rem;
-      }
-    }
   </style>
+
 </head>
 <body>
-  <div class="container">
-    <h1>⏰ Museum Timing</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Opening Time</th>
-          <th>Closing Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Monday</td>
-          <td>9:00 AM</td>
-          <td>5:00 PM</td>
-        </tr>
-        <tr>
-          <td>Tuesday</td>
-          <td>9:00 AM</td>
-          <td>5:00 PM</td>
-        </tr>
-        <tr>
-          <td>Wednesday</td>
-          <td>9:00 AM</td>
-          <td>5:00 PM</td>
-        </tr>
-        <tr>
-          <td>Thursday</td>
-          <td>9:00 AM</td>
-          <td>5:00 PM</td>
-        </tr>
-        <tr>
-          <td>Friday</td>
-          <td>9:00 AM</td>
-          <td>5:00 PM</td>
-        </tr>
-        <tr>
-          <td>Saturday</td>
-          <td>10:00 AM</td>
-          <td>6:00 PM</td>
-        </tr>
-        <tr>
-          <td>Sunday</td>
-          <td class="closed">Closed</td>
-          <td class="closed">Closed</td>
-        </tr>
-      </tbody>
-    </table>
+
+<!-- NAVBAR -->
+<section class="home" id="home">
+  <div class="home-box">
+    <nav>
+      <div class="logo bars">
+        <h3>Ciphers</h3>
+      </div>
+
+      <div class="menu">
+        <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'About' %}">About</a></li>
+          <li><a href="{% url 'time' %}">Timing</a></li>
+          <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+          <li><a href="{% url 'event' %}">Events</a></li>
+        </ul>
+      </div>
+
+      <div class="login">
+        <ul>
+          {% if user.is_authenticated %}
+            <li>Hello, {{ user.first_name }}</li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
   </div>
+</section>
+
+<!-- MAIN PAGE CONTENT -->
+<section class="timing-section">
+  <div class="timing-container">
+
+    <h1 class="main-heading">⏰ Museum Timing</h1>
+
+    <div class="timing-table-box floating-card">
+      <table class="timing-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Opening Time</th>
+            <th>Closing Time</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for t in timings %}
+          <tr>
+            <td>{{ t.day }}</td>
+
+            {% if t.is_closed %}
+              <td class="closed">Closed</td>
+              <td class="closed">Closed</td>
+            {% else %}
+              <td>{{ t.open_time }}</td>
+              <td>{{ t.close_time }}</td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
 </body>
 </html>

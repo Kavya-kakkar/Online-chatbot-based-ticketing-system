@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Exhibit, Event, Ticket
+from .models import Exhibit, Event, MuseumTiming, Ticket
 
 
 def index(request):
@@ -24,7 +24,8 @@ def time(request):
     return render(request,"time.html")
 
 def our_terms(request):
-    return render(request,"our_terms.html")
+    timings = MuseumTiming.objects.all()
+    return render(request,"our_terms.html" , {"timings" : timings})
 
 def carrer(request):
     return render(request,"carrer.html")
