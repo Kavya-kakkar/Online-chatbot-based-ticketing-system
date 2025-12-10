@@ -6,62 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Guide - Ciphers Inc</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 30px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        .steps {
-            margin: 20px 0;
-        }
-        .step {
-            padding: 20px;
-            border-left: 5px solid #3498db;
-            margin-bottom: 20px;
-            background: #ecf6fd;
-            border-radius: 8px;
-        }
-        .step h3 {
-            margin-top: 0;
-        }
-        .faq {
-            margin-top: 40px;
-        }
-        .faq h2 {
-            margin-bottom: 10px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 20px;
-            background: #3498db;
-            color: #fff;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background: #217dbb;
-        }
-    </style>
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+    }
+    .booking-container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 150px auto 40px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+        color: #2c3e50;
+    }
+    .steps {
+        margin: 20px 0;
+    }
+    .step {
+        padding: 20px;
+        border-left: 5px solid #3498db;
+        margin-bottom: 20px;
+        background: #ecf6fd;
+        border-radius: 8px;
+    }
+    .step h3 {
+        margin-top: 0;
+    }
+    .faq {
+        margin-top: 40px;
+    }
+    .faq h2 {
+        margin-bottom: 10px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 12px 20px;
+        background: #3498db;
+        color: #fff;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .btn:hover {
+        background: #217dbb;
+    }
+</style>
+
 <body>
-    <div class="container">
+
+    <!-- ✅ NAV BAR (uses style.css only) -->
+    <nav class="navbar">
+        <div class="logo">
+            <h3>Ciphers</h3>
+        </div>
+
+        <ul class="menu">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'About' %}">About</a></li>
+            <li><a href="{% url 'time' %}">Timing</a></li>
+            <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+            <li><a href="{% url 'event' %}">Events</a></li>
+        </ul>
+
+        <div class="login">
+            {% if user.is_authenticated %}
+                <span>Hello, {{ user.first_name }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'register' %}">Register</a>
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="booking-container">
         <h1>Booking Guide</h1>
         <p>Follow this simple guide to book your tickets, events, or services with <strong>Ciphers Inc</strong>. We’ve designed the process to be quick and user-friendly.</p>
 
@@ -70,34 +97,92 @@
                 <h3>Step 1: Browse Events & Services</h3>
                 <p>Visit our <a href="{% url 'Gallery' %}">Gallery</a> or <a href="{% url 'event' %}">Events</a> page to explore what’s available.</p>
             </div>
+
             <div class="step">
                 <h3>Step 2: Choose Your Option</h3>
                 <p>Select your preferred date, time, and service/event package. Check details and pricing carefully.</p>
             </div>
+
             <div class="step">
                 <h3>Step 3: Create/Login to Account</h3>
-                <p>You’ll need to <a href="{% url 'register' %}">register</a> or <a href="{% url 'login' %}">login</a> to continue with booking.</p>
+                <p>You’ll need to <a href="{% url 'register' %}">register</a> or <a href="{% url 'login' %}">login</a> to continue.</p>
             </div>
+
             <div class="step">
                 <h3>Step 4: Make Payment</h3>
-                <p>Choose your payment method and complete the transaction securely. You’ll get an instant confirmation email.</p>
+                <p>Choose your payment method and complete the transaction securely. You’ll get confirmation instantly.</p>
             </div>
+
             <div class="step">
                 <h3>Step 5: Confirmation</h3>
-                <p>Your booking details will be sent to your email, and you can also view them in your.</p>
+                <p>Your booking details will be sent to your email and stored in your profile dashboard.</p>
             </div>
         </div>
 
         <div class="faq">
             <h2>Booking FAQ</h2>
+
             <h4>Can I cancel my booking?</h4>
-            <p>Yes, please review our <a href="{% url 'Cacellation' %}">cancellation policy</a> for details.</p>
+            <p>Yes, please review our <a href="{% url 'Cacellation' %}">cancellation policy</a>.</p>
 
             <h4>Do I need to print my ticket?</h4>
-            <p>No, you can simply show your digital confirmation at the venue.</p>
+            <p>No, digital confirmation is enough.</p>
         </div>
 
         <a href="{% url 'booking_guide' %}" class="btn">Start Booking Now</a>
     </div>
+
+    <!-- FOOTER (uses style.css only) -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="detail">
+                <h3>Ciphers</h3>
+                <p>Embark on an unforgettable journey through art and history—our chatbot is your guide.</p>
+                <h5>Get in touch</h5>
+                <a href="#">kk234@gmail.com</a>
+
+                <div class="social">
+                    <a href="#"><i class="fa fa-linkedin-square"></i></a>
+                    <a href="#"><i class="fa fa-facebook-square"></i></a>
+                    <a href="#"><i class="fa fa-twitter-square"></i></a>
+                </div>
+            </div>
+
+            <div class="about-us">
+                <h4>About us</h4>
+                <li><a href="{% url 'About' %}">About us</a></li>
+                <li><a href="{% url 'our_terms' %}">Our terms</a></li>
+                <li><a href="{% url 'carrer' %}">Careers</a></li>
+                <li><a href="{% url 'mission' %}">Mission & values</a></li>
+                <li><a href="{% url 'partnerships' %}">Partnerships</a></li>
+            </div>
+
+            <div class="about-us">
+                <h4>Help</h4>
+                <li><a href="{% url 'FAQ' %}">FAQ</a></li>
+                <li><a href="{% url 'booking_guide' %}">Booking guide</a></li>
+                <li><a href="{% url 'Cacellation' %}">Cancellation policy</a></li>
+                <li><a href="{% url 'site_map' %}">Site map</a></li>
+            </div>
+
+            <div class="about-us">
+                <h4>Resources</h4>
+                <li><a href="{% url 'Newsletter' %}">Newsletter</a></li>
+                <li><a href="{% url 'Blog' %}">Blog</a></li>
+                <li><a href="{% url 'Gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'Offers' %}">Offers</a></li>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            &copy;2024 - Ciphers Inc, all rights reserved
+            <br>
+            <a href="{% url 'our_terms' %}">Terms & Conditions</a> |
+            <a href="{% url 'Privacy' %}">Privacy Policy</a>
+        </div>
+    </footer>
+
 </body>
 </html>

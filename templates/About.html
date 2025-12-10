@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <script src="https://kit.fontawesome.com/a2e0f1f6a4.js" crossorigin="anonymous"></script>
   <title>About Us - Museum</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
   <style>
     body {
       margin: 0;
@@ -16,9 +18,9 @@
       line-height: 1.6;
     }
 
-    .container {
+    .about-container {
       max-width: 900px;
-      margin: 60px auto;
+      margin: 120px auto 60px auto;
       padding: 40px;
       background: #fff;
       border-radius: 10px;
@@ -46,51 +48,117 @@
 </head>
 <body>
 
-  <section class="home" id="home">
-    <div class="home-box">
-      <nav>
-        <div class="logo bars">
-          <div class="bar">
-            <i class="fa fa-bars"></i>
-          </div>
-          <h3>Ciphers</h3>
+<!-- NAVBAR -->
+<section class="home" id="home">
+  <div class="home-box">
+    <nav>
+      <div class="logo bars">
+        <div class="bar">
+          <i class="fa fa-bars"></i>
         </div>
-        <div class="menu">
-          <div class="close">
-            <i class="fa fa-close"></i>
-          </div>
-          <ul>
-            <li><a href= "{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'About' %}">about</a></li>
-            <li><a href="{% url 'time' %}">timing</a></li>
-            <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
-            <li><a href="{% url 'event' %}">Events</a></li>
-          </ul>
-        </div>
-        <div class="login">
-          {% if user.is_authenticated %}
-          <li>Hello, {{user.first_name}}</li>
-          <a href="{% url 'logout' %}">Logout</a>
-          {% else %}
-          <a href="{% url 'register' %}" style="margin-right: 15px;">Register</a>
-          <a href="{% url 'login' %}">login</a>
-          {% endif %}
-        </div>
-      </nav>
+        <h3>Ciphers</h3>
+      </div>
 
-  <div class="container">
-    <h1>About Our Museum</h1>
-    <p>
-      Welcome to our museum! We are dedicated to <span class="highlight">preserving and showcasing the rich history and culture</span> of our region.  
-      Our exhibits feature a wide range of artifacts, artworks, and interactive displays that provide a fascinating glimpse into the past.
-    </p>
-    <p>
-      Our mission is to <span class="highlight">educate and inspire</span> visitors of all ages through engaging and informative exhibits.  
-      We believe that understanding our history is essential to shaping our future, and we strive to make our museum a place where everyone can learn and grow.
-    </p>
-    <p>
-      Thank you for visiting our museum. We hope you enjoy your time here and leave with a deeper appreciation for the history and culture that make our community unique.
-    </p>
+      <div class="menu">
+        <div class="close">
+          <i class="fa fa-close"></i>
+        </div>
+        <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'About' %}">About</a></li>
+          <li><a href="{% url 'time' %}">Timing</a></li>
+          <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+          <li><a href="{% url 'event' %}">Events</a></li>
+        </ul>
+      </div>
+
+      <div class="login">
+        {% if user.is_authenticated %}
+          <li>Hello, {{ user.first_name }}</li>
+          <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'register' %}" style="margin-right: 15px;">Register</a>
+          <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </div>
+    </nav>
   </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<div class="about-container">
+  <h1>About Our Museum</h1>
+  <p>
+    Welcome to our museum! We are dedicated to 
+    <span class="highlight">preserving and showcasing the rich history and culture</span> 
+    of our region. Our exhibits feature a wide range of artifacts, artworks, and 
+    interactive displays that provide a fascinating glimpse into the past.
+  </p>
+  <p>
+    Our mission is to <span class="highlight">educate and inspire</span> visitors of all ages 
+    through engaging and informative exhibits.  
+    We believe that understanding our history is essential to shaping our future.
+  </p>
+  <p>
+    Thank you for visiting our museum. We hope you enjoy your time here and leave 
+    with a deeper appreciation for the unique culture of our community.
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <section class="footer">
+    <div class="container">
+      <div class="detail">
+        <h3>Ciphers</h3>
+        <p>
+          Embark on an unforgettable journey through art and history—our chatbot is your personal guide,
+          ready to assist with everything from ticket booking to exhibit recommendations.
+        </p>
+        <h5>Get in touch</h5>
+        <a href="#">kk234@gmail.com</a>
+        <div class="social">
+          <a href="#"><i class="fa fa-linkedin-square"></i></a>
+          <a href="#"><i class="fa fa-facebook-square"></i></a>
+          <a href="#"><i class="fa fa-twitter-square"></i></a>
+        </div>
+      </div>
+
+      <div class="about-us">
+        <h4>About us</h4>
+        <li><a href="{% url 'About' %}">About us</a></li>
+        <li><a href="{% url 'our_terms' %}">Our terms</a></li>
+        <li><a href="{% url 'carrer' %}">Careers</a></li>
+        <li><a href="{% url 'mission' %}">Mission & values</a></li>
+        <li><a href="{% url 'partnerships' %}">Partnerships</a></li>
+      </div>
+
+      <div class="about-us">
+        <h4>Help</h4>
+        <li><a href="{% url 'FAQ' %}">FAQ</a></li>
+        <li><a href="{% url 'booking_guide' %}">Booking guide</a></li>
+        <li><a href="{% url 'Cacellation' %}">Cancellation policy</a></li>
+        <li><a href="{% url 'site_map' %}">Site map</a></li>
+      </div>
+
+      <div class="about-us">
+        <h4>Resources</h4>
+        <li><a href="{% url 'Newsletter' %}">Newsletter</a></li>
+        <li><a href="{% url 'Blog' %}">Blog</a></li>
+        <li><a href="{% url 'Gallery' %}">Gallery</a></li>
+        <li><a href="{% url 'Offers' %}">Offers</a></li>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <div>&copy;2024 - Ciphers Inc, all rights reserved</div>
+      <div>
+        <a href="{% url 'our_terms' %}">Terms & Conditions</a>
+        <a href="{% url 'Privacy' %}">Privacy Policy</a>
+      </div>
+    </div>
+  </section>
+</footer>
+
 </body>
 </html>
