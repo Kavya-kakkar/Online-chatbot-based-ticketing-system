@@ -95,39 +95,38 @@
   </style>
 </head>
 <body>
-
-  <!-- Navbar  Section -->
-<section class="home" id="home">
-    <div class="home-box">
-        <nav>
-            <div class="logo bars">
-                <div class="bar">
-                    <i class="fa fa-bars"></i>
+  <section class="home" id="home">
+        <div class="home-box">
+            <nav>
+                <div class="logo bars">
+                    <div class="bar">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <h3><a href="{% url 'index' %}">Ciphers</a></h3>
                 </div>
-                <h3>Ciphers</h3>
-            </div>
-            <div class="menu">
-                <div class="close">
-                    <i class="fa fa-close"></i>
+                <div class="menu">
+                    <div class="close">
+                        <i class="fa fa-close"></i>
+                    </div>
+                    <ul>
+                        <li><a href= "{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'About' %}">about</a></li>
+                        <li><a href="{% url 'time' %}">timing</a></li>
+                        <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
+                        <li><a href="{% url 'event' %}">Events</a></li>
+                    </ul>
                 </div>
-                <ul>
-                  <li><a href= "{% url 'index' %}">Home</a></li>
-                  <li><a href="{% url 'About' %}">about</a></li>
-                  <li><a href="{% url 'time' %}">timing</a></li>
-                  <li><a href="{% url 'exhibit' %}">Exhibition</a></li>
-                  <li><a href="{% url 'event' %}">Events</a></li>
-                </ul>
-              </div>
-              <div class="login">
-                {% if user.is_authenticated %}
-                <li>Hello, {{user.first_name}}</li>
-                <a href="accounts/logout">Logout</a>
-                {% else %}
-                <a href="accounts/register" style="margin-right: 15px;">Register</a>
-                <a href="accounts/login">login</a>
-                {% endif %}
-              </div>
+                <div class="login">
+                    {% if user.is_authenticated %}
+                    <li>Hello, {{user.first_name}}</li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                    <a href="{% url 'register' %}" style="margin-right: 15px;">Register</a>
+                    <a href="{% url 'login' %}">login</a>
+                    {% endif %}
+                </div>
             </nav>
+
 
   <!-- Header Section -->
   <section class="offer-header">
