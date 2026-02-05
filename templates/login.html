@@ -5,71 +5,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #74ABE2, #5563DE);
-      display: grid;
-      place-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
     }
 
     .login-card {
       background: #fff;
+      width: 100%;
+      max-width: 360px;
       border-radius: 20px;
       padding: 40px 35px;
-      width: 350px;
-      display: grid;
-      gap: 18px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       animation: fadeIn 0.8s ease-in-out;
     }
 
-    .login-card h2 {
+    h2 {
       text-align: center;
-      margin: 0 0 15px 0;
-      font-size: 1.8rem;
+      margin-bottom: 15px;
       color: #333;
     }
 
     .input-field {
-      display: grid;
-      gap: 6px;
+      margin-bottom: 14px;
     }
 
-    .input-field label {
+    label {
       font-weight: 600;
-      color: #444;
       font-size: 0.9rem;
+      color: #444;
+      display: block;
+      margin-bottom: 6px;
     }
 
-    .input-field input {
+    .password-wrapper {
+      position: relative;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
       padding: 12px;
-      border: 1px solid #ccc;
       border-radius: 10px;
+      border: 1px solid #ccc;
       font-size: 1rem;
       outline: none;
       transition: 0.3s;
     }
 
-    .input-field input:focus {
+    input:focus {
       border-color: #5563DE;
       box-shadow: 0 0 0 3px rgba(85, 99, 222, 0.2);
     }
 
-    .btn-container {
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #5563DE;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .options {
       display: flex;
-      justify-content: center;
-      margin-top: 10px;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
+
+    .options label {
+      font-weight: normal;
+      margin: 0;
+      cursor: pointer;
     }
 
     .login-btn {
-      background: #5563DE;
-      color: white;
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
       border: none;
       border-radius: 10px;
-      padding: 12px 40px;
+      background: #5563DE;
+      color: white;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
@@ -81,20 +115,20 @@
     }
 
     .messages {
-      margin-top: 10px;
       text-align: center;
+      margin-top: 8px;
     }
 
     .messages h3 {
       color: red;
-      font-size: 0.95rem;
-      margin: 5px 0;
+      font-size: 0.9rem;
+      margin: 4px 0;
     }
 
     .extra-links {
       text-align: center;
+      margin-top: 12px;
       font-size: 0.9rem;
-      margin-top: 15px;
     }
 
     .extra-links a {
@@ -103,8 +137,20 @@
       font-weight: 500;
     }
 
-    .extra-links a:hover {
-      text-decoration: underline;
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 25px 20px;
+        border-radius: 15px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      input {
+        padding: 10px;
+        font-size: 0.95rem;
+      }
     }
 
     @keyframes fadeIn {
@@ -113,36 +159,63 @@
     }
   </style>
 </head>
+
 <body>
-  <div class="login-card">
-    <h2>Welcome Back 👋</h2>
-    <form action="{% url 'login' %}" method="post">
-      {% csrf_token %}
-      <div class="input-field">
-        <label for="username">Username</label>
-        <input type="text" name="username" placeholder="Enter username" required>
-      </div>
-      <div class="input-field">
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Enter password" required>
-      </div>
 
-      <!-- Centered Button -->
-      <div class="btn-container">
-        <button type="submit" class="login-btn">Login</button>
-      </div>
-    </form>
+<div class="login-card">
+  <h2>Welcome Back 👋</h2>
 
-    <div class="messages">
-      {% for message in messages %}
-        <h3>{{ message }}</h3>
-      {% endfor %}
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+
+    <div class="input-field">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Enter username" required>
     </div>
 
-    <div class="extra-links">
-      <p>Don’t have an account? <a href="/register">Register</a></p>
-      <p><a href="#">Forgot Password?</a></p>
+    <div class="input-field">
+      <label>Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password" placeholder="Enter password" required>
+        <span class="toggle-password" onclick="togglePassword()">Show</span>
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox" name="remember_me"> Remember me
+        </label>
+        <a href="#">Forgot password?</a>
+      </div>
     </div>
+
+    <button type="submit" class="login-btn">Login</button>
+  </form>
+
+  <div class="messages">
+    {% for message in messages %}
+      <h3>{{ message }}</h3>
+    {% endfor %}
   </div>
+
+  <div class="extra-links">
+    Don’t have an account? <a href="/register">Register</a>
+  </div>
+</div>
+
+<script>
+  function togglePassword() {
+    const pwd = document.getElementById("password");
+    const toggle = document.querySelector(".toggle-password");
+
+    if (pwd.type === "password") {
+      pwd.type = "text";
+      toggle.innerText = "Hide";
+    } else {
+      pwd.type = "password";
+      toggle.innerText = "Show";
+    }
+  }
+</script>
+
 </body>
 </html>
